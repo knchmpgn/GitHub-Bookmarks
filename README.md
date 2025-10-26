@@ -1,12 +1,12 @@
 # GitHub Bookmarks #
 
-##### A complete system to bookmark GitHub repositories with lists and sync via Gist. #####
+##### A complete system to bookmark GitHub repositories with lists and syncing via Gist. #####
 
 ### Features ###
 - Repository Button
 - Profile Overiew Button
 - Profile Menu Button
-- List Management featuring Syncing via Gist
+- List Management featuring syncing via Gist
 
 ### Screenshots ###
 
