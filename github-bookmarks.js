@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         GitHub Bookmarks
 // @namespace    http://tampermonkey.net/
-// @version      4.0
-// @description  A complete system to bookmark GitHub repositories with lists and sync via Gist
+// @version      4.1
+// @description  A complete system to bookmark GitHub repositories with lists and automatic sync via Gist
 // @icon         https://github.githubassets.com/pinned-octocat.svg
 // @author       knchmpgn
 // @match        https://github.com/*
@@ -72,9 +72,14 @@
             localStorage.setItem(STORAGE_KEYS.LIST_ORDER, JSON.stringify(order));
         },
 
-        saveBookmarks(bookmarks) {
+        saveBookmarks(bookmarks, autoSync = true) {
             localStorage.setItem(STORAGE_KEYS.BOOKMARKS, JSON.stringify(bookmarks));
             this.dispatchUpdate();
+            
+            // Auto-sync if configured
+            if (autoSync && this.getSyncToken() && this.getGistId()) {
+                this.syncToGist(true); // Pass true for silent mode
+            }
         },
 
         saveLists(lists) {
@@ -101,7 +106,7 @@
             if (!bookmarks[listName]) bookmarks[listName] = [];
             if (!bookmarks[listName].some(b => b.repo === repo)) {
                 bookmarks[listName].push({ repo, repoUrl });
-                this.saveBookmarks(bookmarks);
+                this.saveBookmarks(bookmarks); // Auto-sync enabled by default
                 return true;
             }
             return false;
@@ -114,7 +119,7 @@
                 if (bookmarks[listName].length === 0) {
                     delete bookmarks[listName];
                 }
-                this.saveBookmarks(bookmarks);
+                this.saveBookmarks(bookmarks); // Auto-sync enabled by default
                 return true;
             }
             return false;
@@ -158,10 +163,10 @@
             localStorage.setItem(STORAGE_KEYS.SYNC_GIST_ID, id);
         },
 
-        async syncToGist() {
+        async syncToGist(silent = false) {
             const token = this.getSyncToken();
             if (!token) {
-                alert('Please configure your GitHub token first (click "Configure Sync")');
+                if (!silent) alert('Please configure your GitHub token first (click "Configure Sync")');
                 return false;
             }
 
@@ -208,6 +213,9 @@
                 return { success: true, time: new Date().toISOString() };
             } catch (error) {
                 console.error('Sync failed:', error);
+                if (!silent) {
+                    console.error('Auto-sync error:', error.message);
+                }
                 return { success: false, error: error.message };
             }
         },
@@ -243,7 +251,7 @@
                 const data = JSON.parse(content);
 
                 if (confirm('This will replace your current bookmarks with the synced version. Continue?')) {
-                    this.saveBookmarks(data.bookmarks);
+                    this.saveBookmarks(data.bookmarks, false); // Disable auto-sync when restoring
                     this.saveLists(data.lists);
                     if (data.listOrder) this.saveListOrder(data.listOrder);
                     return { success: true, time: data.lastSync };
@@ -672,7 +680,7 @@
 
             .bookmark-item {
                 display: flex;
-                align-items: flex-start; /* Change from center to flex-start */
+                align-items: flex-start;
                 gap: 12px;
                 padding: 12px 16px;
                 background-color: var(--bgColor-default, var,--color-canvas-default);
@@ -693,7 +701,7 @@
                 align-items: center;
                 justify-content: center;
                 color: var(--fgColor-muted, var(--color-fg-muted));
-                margin-top: 5px; /* Changed from 2px to 5px */
+                margin-top: 5px;
             }
 
             .bookmark-info {
@@ -771,9 +779,9 @@
                 flex-direction: row;
                 align-items: center;
                 justify-content: flex-end;
-                gap: 12px; /* Increased spacing between list name and trash button */
+                gap: 12px;
                 min-width: 90px;
-                margin-top: 2px; /* lowered by 2px */
+                margin-top: 2px;
             }
 
             .bookmark-action-btn {
@@ -1058,7 +1066,6 @@
         const bookmarked = Storage.isBookmarked(repo);
         const totalCount = Storage.getTotalCount();
 
-        // Update icon -- set the SVG fill only so text and surrounding spans keep their original color
         const svg = mainButton.querySelector('svg');
         if (svg) {
             const iconHtml = bookmarked ? ICONS.bookmarkFilled : ICONS.bookmarkHollow;
@@ -1071,24 +1078,21 @@
                     newSvg.style.fill = '';
                 }
             }
-            // Ensure text remains default colored
             const textSpan = mainButton.querySelector('span[data-bookmark-text="true"]');
             if (textSpan) textSpan.style.color = '';
         }
 
-        // Update text - find the span we marked
         const textSpan = mainButton.querySelector('span[data-bookmark-text="true"]');
         if (textSpan) {
             textSpan.textContent = bookmarked ? 'Bookmarked' : 'Bookmark';
         }
 
-        // Update counter - make sure it stays default colored
         const counter = mainButton.querySelector('.Counter');
         if (totalCount > 0) {
             if (counter) {
                 counter.textContent = totalCount.toLocaleString();
                 counter.setAttribute('title', `${totalCount} bookmark${totalCount !== 1 ? 's' : ''}`);
-                counter.style.color = ''; // Reset any color
+                counter.style.color = '';
             } else {
                 const counterSpan = document.createElement('span');
                 counterSpan.className = 'Counter';
@@ -1108,7 +1112,6 @@
         const actionBar = document.querySelector('.pagehead-actions');
         if (!actionBar || document.querySelector('.gh-bookmark-container')) return;
 
-        // Find the star button container
         const starContainer = Array.from(actionBar.children).find(child =>
             child.querySelector('form[action*="/star"], form[action*="/unstar"]')
         );
@@ -1119,35 +1122,29 @@
         const bookmarked = Storage.isBookmarked(repo);
         const totalCount = Storage.getTotalCount();
 
-        // Find the actual star button to clone
         const starButton = starContainer.querySelector('button[type="submit"]');
         if (!starButton) return;
 
-        // Create new container
         const bookmarkContainer = document.createElement('li');
         bookmarkContainer.classList.add('gh-bookmark-container');
 
-    // Clone just the button
-    const mainButton = starButton.cloneNode(true);
-    mainButton.classList.add('gh-bookmark-main-button', 'btn', 'btn-sm', 'gh-bookmark-btn');
-    mainButton.type = 'button';
-    mainButton.removeAttribute('name');
-    mainButton.removeAttribute('value');
-    mainButton.removeAttribute('data-hydro-click');
-    mainButton.removeAttribute('data-hydro-click-hmac');
-    mainButton.removeAttribute('data-ga-click');
-    // Remove border radius on right, add right border
-    mainButton.style.borderTopRightRadius = '0';
-    mainButton.style.borderBottomRightRadius = '0';
-    mainButton.style.borderRight = '1px solid var(--borderColor-default, var,--color-border-default)';
+        const mainButton = starButton.cloneNode(true);
+        mainButton.classList.add('gh-bookmark-main-button', 'btn', 'btn-sm', 'gh-bookmark-btn');
+        mainButton.type = 'button';
+        mainButton.removeAttribute('name');
+        mainButton.removeAttribute('value');
+        mainButton.removeAttribute('data-hydro-click');
+        mainButton.removeAttribute('data-hydro-click-hmac');
+        mainButton.removeAttribute('data-ga-click');
+        mainButton.style.borderTopRightRadius = '0';
+        mainButton.style.borderBottomRightRadius = '0';
+        mainButton.style.borderRight = '1px solid var(--borderColor-default, var,--color-border-default)';
 
-        // Find and replace icon
         const svg = mainButton.querySelector('svg');
         if (svg) {
             const iconHtml = bookmarked ? ICONS.bookmarkFilled : ICONS.bookmarkHollow;
             const svgParent = svg.parentElement;
             svg.outerHTML = iconHtml;
-            // Color only the SVG itself, not the parent span
             if (bookmarked) {
                 const newSvg = mainButton.querySelector('svg');
                 if (newSvg) {
@@ -1156,19 +1153,16 @@
             }
         }
 
-        // Remove any red color from the button and its children
         mainButton.style.color = '';
         const allSpans = mainButton.querySelectorAll('span');
         allSpans.forEach(span => {
             span.style.color = '';
         });
 
-        // Find and replace text - look for visible text spans
         const spans = mainButton.querySelectorAll('span');
         let textFound = false;
         for (const span of spans) {
             const text = span.textContent.trim();
-            // Only replace if this span contains just the text (not nested elements)
             if ((text === 'Star' || text === 'Starred' || text === 'Unstar') && span.children.length === 0) {
                 span.textContent = bookmarked ? 'Bookmarked' : 'Bookmark';
                 span.setAttribute('data-bookmark-text', 'true');
@@ -1177,7 +1171,6 @@
             }
         }
 
-        // If no text span found, find the span next to the icon
         if (!textFound) {
             const iconSpan = mainButton.querySelector('svg')?.parentElement;
             if (iconSpan && iconSpan.nextElementSibling) {
@@ -1189,7 +1182,6 @@
             }
         }
 
-        // Update or add counter
         let counter = mainButton.querySelector('.Counter');
         if (counter) {
             if (totalCount > 0) {
@@ -1207,26 +1199,22 @@
             mainButton.appendChild(counter);
         }
 
-        // Set click handler
         mainButton.onclick = (e) => {
             e.preventDefault();
             e.stopPropagation();
             openBookmarksModal();
         };
 
-        // Create button group wrapper
         const btnGroup = document.createElement('div');
         btnGroup.className = 'BtnGroup d-flex';
         btnGroup.appendChild(mainButton);
 
-    // Create dropdown button (summary)
-    const summary = document.createElement('summary');
-    summary.className = 'btn btn-sm gh-bookmark-dropdown gh-bookmark-dropdown-btn';
-    summary.setAttribute('aria-haspopup', 'menu');
-    summary.setAttribute('aria-label', 'Manage bookmark lists');
-    summary.innerHTML = ICONS.triangleDown;
+        const summary = document.createElement('summary');
+        summary.className = 'btn btn-sm gh-bookmark-dropdown gh-bookmark-dropdown-btn';
+        summary.setAttribute('aria-haspopup', 'menu');
+        summary.setAttribute('aria-label', 'Manage bookmark lists');
+        summary.innerHTML = ICONS.triangleDown;
 
-        // Create dropdown container
         const details = document.createElement('details');
         details.className = 'details-reset details-overlay d-inline-block position-relative gh-bookmark-details';
 
@@ -1243,14 +1231,12 @@
         btnGroup.appendChild(details);
         bookmarkContainer.appendChild(btnGroup);
 
-        // Close dropdown on outside click
         document.addEventListener('click', (e) => {
             if (!details.contains(e.target) && details.hasAttribute('open')) {
                 details.removeAttribute('open');
             }
         });
 
-        // Insert before star button
         actionBar.insertBefore(bookmarkContainer, starContainer);
     }
 
@@ -1278,11 +1264,10 @@
                 renderBookmarksModal(contentEl, filterEl, statsEl, listName);
             });
 
-            // Drag and drop for reordering
             if (listName !== 'All') {
                 btn.addEventListener('dragstart', (e) => {
                     draggedElement = btn;
-                    draggedIndex = index - 1; // -1 because 'All' is not in the order
+                    draggedIndex = index - 1;
                     btn.classList.add('dragging');
                     e.dataTransfer.effectAllowed = 'move';
                 });
@@ -1326,7 +1311,6 @@
             filterEl.appendChild(btn);
         });
 
-        // Small explanatory hint beneath the list-name buttons
         const hint = document.createElement('div');
         hint.className = 'bookmarks-filter-hint';
         hint.textContent = 'Tip: Drag and drop lists to reorder them.';
@@ -1370,7 +1354,6 @@
                 const item = document.createElement('div');
                 item.className = 'bookmark-item';
 
-                // Get all lists to show current membership
                 const allLists = Storage.getLists();
                 const currentLists = [];
                 allLists.forEach(listName => {
@@ -1397,15 +1380,12 @@
                     </div>
                 `;
 
-                // Click entire item to open
                 item.addEventListener('click', (e) => {
-                    // Only open the repo URL if not clicking a list tag or action button
                     if (!e.target.closest('.bookmark-right-group')) {
                         window.open(bookmark.repoUrl, '_blank');
                     }
                 });
 
-                // List tag management
                 const listTags = item.querySelectorAll('.bookmark-list-tag');
                 listTags.forEach(tag => {
                     tag.addEventListener('click', (e) => {
@@ -1439,28 +1419,23 @@
     }
 
     function showListManagementDropdown(targetElement, repo, currentLists) {
-        // If a dropdown already exists...
         const existing = document.querySelector('.bookmark-list-dropdown');
         if (existing) {
-            // If it's for the same repo + list target, treat this as a "second click" and close the modal
             if (existing.dataset.targetRepo === repo && existing.dataset.targetList === targetElement.dataset.list) {
                 existing.remove();
                 return;
             }
-            // Otherwise remove any other open dropdown before opening a new one
             existing.remove();
         }
 
         const dropdown = document.createElement('div');
         dropdown.className = 'bookmark-list-dropdown';
-        // Track which element opened this dropdown
         dropdown.dataset.targetRepo = repo;
         dropdown.dataset.targetList = targetElement.dataset.list || '';
 
         const allLists = Storage.getLists();
         const bookmarks = Storage.getBookmarks();
 
-        // Get the repo URL from bookmarks
         let repoUrl = '';
         for (const [listName, items] of Object.entries(bookmarks)) {
             const found = items.find(b => b.repo === repo);
@@ -1486,7 +1461,6 @@
                     Storage.removeBookmark(repo, listName);
                 }
 
-                // Update the tag display
                 const listContainer = document.querySelector(`[data-repo="${repo}"]`);
                 if (listContainer) {
                     const newLists = [];
@@ -1499,7 +1473,6 @@
                         `<span class="bookmark-list-tag" data-list="${l}">${l}</span>`
                     ).join('');
 
-                    // Re-attach click handlers
                     listContainer.querySelectorAll('.bookmark-list-tag').forEach(tag => {
                         tag.addEventListener('click', (e) => {
                             e.stopPropagation();
@@ -1517,14 +1490,12 @@
             dropdown.appendChild(item);
         });
 
-        // Position dropdown
         const rect = targetElement.getBoundingClientRect();
         dropdown.style.left = rect.left + 'px';
         dropdown.style.top = (rect.bottom + 4) + 'px';
 
         document.body.appendChild(dropdown);
 
-        // Close on outside click
         const closeDropdown = (e) => {
             if (!dropdown.contains(e.target) && e.target !== targetElement) {
                 dropdown.remove();
@@ -1580,7 +1551,8 @@
         const syncStatus = document.createElement('span');
         syncStatus.className = 'bookmarks-sync-status';
         const token = Storage.getSyncToken();
-        syncStatus.textContent = token ? '✓ Sync configured' : 'Sync not configured';
+        const gistId = Storage.getGistId();
+        syncStatus.textContent = (token && gistId) ? '✓ Auto-sync enabled' : 'Auto-sync not configured';
 
         const configBtn = document.createElement('button');
         configBtn.className = 'bookmarks-sync-btn';
@@ -1596,7 +1568,7 @@
             const result = await Storage.syncToGist();
             if (result.success) {
                 alert('Backup successful!');
-                syncStatus.textContent = `✓ Last backup: ${new Date(result.time).toLocaleString()}`;
+                syncStatus.textContent = `✓ Auto-sync enabled`;
             } else {
                 alert('Backup failed: ' + (result.error || 'Unknown error'));
             }
@@ -1620,6 +1592,25 @@
             restoreBtn.disabled = false;
             restoreBtn.textContent = 'Restore';
         });
+
+        const helpIcon = document.createElement('div');
+        helpIcon.className = 'bookmarks-sync-help';
+        helpIcon.innerHTML = `
+            ${ICONS.questionMark}
+            <div class="bookmarks-sync-help-tooltip">
+                <h4>How to use Sync</h4>
+                <p><strong>Setup:</strong></p>
+                <ol>
+                    <li>Click "Configure Sync"</li>
+                    <li>Create a token at <code>github.com/settings/tokens/new</code></li>
+                    <li>Grant only the <strong>gist</strong> scope</li>
+                    <li>Paste the token when prompted</li>
+                </ol>
+                <p><strong>Auto-sync:</strong> Once configured, bookmarks automatically sync when you add or remove them</p>
+                <p><strong>Backup:</strong> Manually save your bookmarks to a private Gist</p>
+                <p><strong>Restore:</strong> Load bookmarks from your Gist (useful for syncing across browsers)</p>
+            </div>
+        `;
 
         syncSection.appendChild(syncStatus);
         syncSection.appendChild(helpIcon);
@@ -1657,31 +1648,14 @@
 
         if (token !== null && token.trim() !== '') {
             Storage.setSyncToken(token.trim());
-            alert('Sync token saved! You can now backup and restore your bookmarks.');
+            alert('Sync token saved! You can now backup and restore your bookmarks.\n\nAuto-sync will begin once you create your first backup.');
             const syncStatus = document.querySelector('.bookmarks-sync-status');
             if (syncStatus) {
-                syncStatus.textContent = '✓ Sync configured';
+                const gistId = Storage.getGistId();
+                syncStatus.textContent = gistId ? '✓ Auto-sync enabled' : '✓ Sync configured (create backup to enable auto-sync)';
             }
         }
     }
-
-    const helpIcon = document.createElement('div');
-        helpIcon.className = 'bookmarks-sync-help';
-        helpIcon.innerHTML = `
-            ${ICONS.questionMark}
-            <div class="bookmarks-sync-help-tooltip">
-                <h4>How to use Sync</h4>
-                <p><strong>Setup:</strong></p>
-                <ol>
-                    <li>Click "Configure Sync"</li>
-                    <li>Create a token at <code>github.com/settings/tokens/new</code></li>
-                    <li>Grant only the <strong>gist</strong> scope</li>
-                    <li>Paste the token when prompted</li>
-                </ol>
-                <p><strong>Backup:</strong> Saves your bookmarks to a private Gist</p>
-                <p><strong>Restore:</strong> Loads bookmarks from your Gist (useful for syncing across browsers)</p>
-            </div>
-        `; 
 
     function closeBookmarksModal() {
         const modal = document.querySelector('.bookmarks-modal-overlay');
