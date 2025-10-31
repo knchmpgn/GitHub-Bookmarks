@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GitHub Bookmarks
 // @namespace    http://tampermonkey.net/
-// @version      4.1
+// @version      4.2
 // @description  A complete system to bookmark GitHub repositories with lists and automatic sync via Gist
 // @icon         https://github.githubassets.com/pinned-octocat.svg
 // @author       knchmpgn
@@ -35,7 +35,9 @@
         close: `<svg class="octicon octicon-x" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path></svg>`,
         plus: `<svg class="octicon octicon-plus" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"></path></svg>`,
         trash: `<svg class="octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M11 1.75V3h2.25a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1 0-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75ZM4.496 6.675l.66 6.6a.25.25 0 0 0 .249.225h5.19a.25.25 0 0 0 .249-.225l.66-6.6a.75.75 0 0 1 1.492.149l-.66 6.6A1.748 1.748 0 0 1 10.595 15h-5.19a1.75 1.75 0 0 1-1.741-1.575l-.66-6.6a.75.75 0 1 1 1.492-.15ZM6.5 1.75V3h3V1.75a.25.25 0 0 0-.25-.25h-2.5a.25.25 0 0 0-.25.25Z"></path></svg>`,
-        questionMark: `<svg class="octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.756 2.756 0 0 1 1.638.525c.503.377.862.965.862 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6.24 6.24 0 0 0-.26.16.952.952 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661.103-.067.207-.132.313-.195l.007-.004c.1-.061.182-.11.258-.161a.969.969 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25c0-.412-.155-.826-.57-1.12A1.256 1.256 0 0 0 8 4.75c-.361 0-.67.1-.894.27-.228.173-.4.412-.534.714v.001ZM8 11a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>`
+        questionMark: `<svg class="octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.756 2.756 0 0 1 1.638.525c.503.377.862.965.862 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6.24 6.24 0 0 0-.26.16.952.952 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661.103-.067.207-.132.313-.195l.007-.004c.1-.061.182-.11.258-.161a.969.969 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25c0-.412-.155-.826-.57-1.12A1.256 1.256 0 0 0 8 4.75c-.361 0-.67.1-.894.27-.228.173-.4.412-.534.714v.001ZM8 11a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>`,
+        pencil: `<svg class="octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M11.013 1.427a1.75 1.75 0 0 1 2.474 0l1.086 1.086a1.75 1.75 0 0 1 0 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 0 1-.927-.928l.929-3.25c.081-.286.235-.547.445-.758l8.61-8.61Zm.176 4.823L9.75 4.81l-6.286 6.287a.253.253 0 0 0-.064.108l-.558 1.953 1.953-.558a.253.253 0 0 0 .108-.064Zm1.238-3.763a.25.25 0 0 0-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 0 0 0-.354Z"></path></svg>`,
+        gear: `<svg class="octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M8 0a8.2 8.2 0 0 1 .701.031C9.444.095 9.99.645 10.16 1.29l.288 1.107c.018.066.079.158.212.224.231.114.454.243.668.386.123.082.233.09.299.071l1.103-.303c.644-.176 1.392.021 1.82.63.27.385.506.792.704 1.218.315.675.111 1.422-.364 1.891l-.814.806c-.049.048-.098.147-.088.294.016.257.016.515 0 .772-.01.147.038.246.088.294l.814.806c.475.469.679 1.216.364 1.891a7.977 7.977 0 0 1-.704 1.217c-.428.61-1.176.807-1.82.63l-1.102-.302c-.067-.019-.177-.011-.3.071a5.909 5.909 0 0 1-.668.386c-.133.066-.194.158-.211.224l-.29 1.106c-.168.646-.715 1.196-1.458 1.26a8.006 8.006 0 0 1-1.402 0c-.743-.064-1.289-.614-1.458-1.26l-.289-1.106c-.018-.066-.079-.158-.212-.224a5.738 5.738 0 0 1-.668-.386c-.123-.082-.233-.09-.299-.071l-1.103.303c-.644.176-1.392-.021-1.82-.63a8.12 8.12 0 0 1-.704-1.218c-.315-.675-.111-1.422.363-1.891l.815-.806c.05-.048.098-.147.088-.294a6.214 6.214 0 0 1 0-.772c.01-.147-.038-.246-.088-.294l-.815-.806C.635 6.045.431 5.298.746 4.623a7.92 7.92 0 0 1 .704-1.217c.428-.61 1.176-.807 1.82-.63l1.102.302c.067.019.177.011.3-.071.214-.143.437-.272.668-.386.133-.066.194-.158.211-.224l.29-1.106C6.009.645 6.556.095 7.299.03 7.53.01 7.764 0 8 0Zm-.571 1.525c-.036.003-.108.036-.137.146l-.289 1.105c-.147.561-.549.967-.998 1.189-.173.086-.34.183-.5.29-.417.278-.97.423-1.529.27l-1.103-.303c-.109-.03-.175.016-.195.045-.22.312-.412.644-.573.99-.014.031-.021.11.059.19l.815.806c.411.406.562.957.53 1.456a4.709 4.709 0 0 0 0 .582c.032.499-.119 1.05-.53 1.456l-.815.806c-.081.08-.073.159-.059.19.162.346.353.677.573.989.02.03.085.076.195.046l1.102-.303c.56-.153 1.113-.008 1.53.27.161.107.328.204.501.29.447.222.85.629.997 1.189l.289 1.105c.029.109.101.143.137.146a6.6 6.6 0 0 0 1.142 0c.036-.003.108-.036.137-.146l.289-1.105c.147-.561.549-.967.998-1.189.173-.086.34-.183.5-.29.417-.278.97-.423 1.529-.27l1.103.303c.109.029.175-.016.195-.045.22-.313.411-.644.573-.99.014-.031.021-.11-.059-.19l-.815-.806c-.411-.406-.562-.957-.53-1.456a4.709 4.709 0 0 0 0-.582c-.032-.499.119-1.05.53-1.456l.815-.806c.081-.08.073-.159.059-.19a6.464 6.464 0 0 0-.573-.989c-.02-.03-.085-.076-.195-.046l-1.102.303c-.56.153-1.113.008-1.53-.27a4.44 4.44 0 0 0-.501-.29c-.447-.222-.85-.629-.997-1.189l-.289-1.105c-.029-.11-.101-.143-.137-.146a6.6 6.6 0 0 0-1.142 0ZM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM9.5 8a1.5 1.5 0 1 0-3.001.001A1.5 1.5 0 0 0 9.5 8Z"></path></svg>`
     };
 
     let modalOpen = false;
@@ -75,7 +77,7 @@
         saveBookmarks(bookmarks, autoSync = true) {
             localStorage.setItem(STORAGE_KEYS.BOOKMARKS, JSON.stringify(bookmarks));
             this.dispatchUpdate();
-            
+
             // Auto-sync if configured
             if (autoSync && this.getSyncToken() && this.getGistId()) {
                 this.syncToGist(true); // Pass true for silent mode
@@ -140,6 +142,67 @@
                 return true;
             }
             return false;
+        },
+
+        renameList(oldName, newName) {
+            if (oldName === DEFAULT_LIST) {
+                alert('Cannot rename the default list.');
+                return false;
+            }
+
+            const lists = this.getLists();
+            if (!lists.includes(oldName)) return false;
+            if (lists.includes(newName)) {
+                alert('A list with that name already exists.');
+                return false;
+            }
+
+            // Update lists array
+            const newLists = lists.map(l => l === oldName ? newName : l);
+            this.saveLists(newLists);
+
+            // Update bookmarks
+            const bookmarks = this.getBookmarks();
+            if (bookmarks[oldName]) {
+                bookmarks[newName] = bookmarks[oldName];
+                delete bookmarks[oldName];
+                this.saveBookmarks(bookmarks);
+            }
+
+            // Update order
+            const order = this.getListOrder();
+            const newOrder = order.map(l => l === oldName ? newName : l);
+            this.saveListOrder(newOrder);
+
+            return true;
+        },
+
+        deleteList(listName) {
+            if (listName === DEFAULT_LIST) {
+                alert('Cannot delete the default list.');
+                return false;
+            }
+
+            const lists = this.getLists();
+            if (!lists.includes(listName)) return false;
+
+            // Remove from lists
+            const newLists = lists.filter(l => l !== listName);
+            this.saveLists(newLists);
+
+            // Remove bookmarks
+            const bookmarks = this.getBookmarks();
+            if (bookmarks[listName]) {
+                delete bookmarks[listName];
+                this.saveBookmarks(bookmarks);
+            }
+
+            // Remove from order
+            const order = this.getListOrder();
+            const newOrder = order.filter(l => l !== listName);
+            this.saveListOrder(newOrder);
+
+            return true;
         },
 
         dispatchUpdate() {
@@ -601,16 +664,41 @@
             .bookmarks-filter {
                 display: flex;
                 gap: 8px;
-                padding: 16px 24px;
-                border-bottom: 1px solid var(--borderColor-muted, var,--color-border-muted);
-                overflow-x: auto;
+                padding: 16px 24px 6px 24px;
+                flex-wrap: wrap;
             }
 
-            /* Small hint shown under the list-name buttons explaining drag reorder */
-            .bookmarks-filter-hint {
+            .bookmarks-filter-actions {
+                display: flex;
+                gap: 8px;
+                padding: 12px 24px 16px 24px;
+                align-items: center;
+                border-bottom: 1px solid var(--borderColor-muted, var,--color-border-muted);
+            }
+
+            .bookmarks-manage-btn {
+                padding: 5px 12px;
+                border: 1px solid var(--borderColor-default, var,--color-border-default);
+                border-radius: 6px;
+                background-color: var(--button-default-bgColor-rest, var,--color-btn-bg);
+                color: var(--button-default-fgColor-rest, var,--color-btn-text);
                 font-size: 12px;
+                font-weight: 500;
+                cursor: pointer;
+                white-space: nowrap;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .bookmarks-manage-btn:hover {
+                background-color: var(--button-default-bgColor-hover, var,--color-btn-hover-bg);
+            }
+
+            .bookmarks-filter-hint {
+                font-size: 11px;
                 color: var(--fgColor-muted, var,--color-fg-muted);
-                margin: 6px 24px 0 24px;
+                flex: 1;
             }
 
             .bookmarks-filter-btn {
@@ -846,6 +934,104 @@
 
             .bookmark-list-dropdown-item input[type="checkbox"] {
                 margin: 0;
+            }
+
+            /* List Management Modal */
+            .list-management-modal {
+                background-color: var(--overlay-bgColor, var,--color-canvas-overlay);
+                border: 1px solid var(--borderColor-default, var,--color-border-default);
+                border-radius: 12px;
+                box-shadow: var(--shadow-floating-xlarge);
+                width: 90%;
+                max-width: 500px;
+                max-height: 600px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .list-management-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 16px 24px;
+                border-bottom: 1px solid var(--borderColor-muted, var,--color-border-muted);
+            }
+
+            .list-management-title {
+                font-size: 18px;
+                font-weight: 600;
+                color: var(--fgColor-default, var,--color-fg-default);
+                margin: 0;
+            }
+
+            .list-management-content {
+                flex: 1;
+                overflow-y: auto;
+                padding: 16px 24px;
+            }
+
+            .list-management-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px;
+                background-color: var(--bgColor-default, var,--color-canvas-default);
+                border: 1px solid var(--borderColor-default, var,--color-border-default);
+                border-radius: 6px;
+                margin-bottom: 8px;
+            }
+
+            .list-management-item-name {
+                flex: 1;
+                font-size: 14px;
+                font-weight: 500;
+                color: var(--fgColor-default, var,--color-fg-default);
+            }
+
+            .list-management-item-count {
+                font-size: 12px;
+                color: var(--fgColor-muted, var,--color-fg-muted);
+                padding: 2px 8px;
+                background-color: var(--bgColor-neutral-muted, var,--color-neutral-muted);
+                border-radius: 12px;
+            }
+
+            .list-management-item-actions {
+                display: flex;
+                gap: 4px;
+            }
+
+            .list-management-action-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 28px;
+                height: 28px;
+                padding: 0;
+                background: transparent;
+                border: 1px solid var(--borderColor-default, var,--color-border-default);
+                border-radius: 6px;
+                color: var(--fgColor-muted, var,--color-fg-muted);
+                cursor: pointer;
+            }
+
+            .list-management-action-btn:hover {
+                background-color: var(--bgColor-neutral-muted, var,--color-neutral-muted);
+            }
+
+            .list-management-action-btn.danger:hover {
+                background-color: var(--button-danger-bgColor-hover, var(--color-btn-danger-hover-bg));
+                border-color: var(--button-danger-bgColor-hover, var(--color-btn-danger-hover-bg));
+                color: var(--button-danger-fgColor-rest, var(--color-btn-danger-text));
+            }
+
+            .list-management-action-btn.danger:hover svg {
+                fill: white;
+            }
+
+            .list-management-action-btn:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
             }
 
             .bookmarks-stats {
@@ -1241,10 +1427,136 @@
     }
 
     // ============================================================================
+    // LIST MANAGEMENT MODAL
+    // ============================================================================
+
+    function openListManagementModal() {
+        const overlay = document.createElement('div');
+        overlay.className = 'bookmarks-modal-overlay';
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeListManagementModal();
+        });
+
+        const modal = document.createElement('div');
+        modal.className = 'list-management-modal';
+
+        const header = document.createElement('div');
+        header.className = 'list-management-header';
+
+        const title = document.createElement('h3');
+        title.className = 'list-management-title';
+        title.textContent = 'Manage Lists';
+
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'bookmarks-modal-close';
+        closeBtn.innerHTML = ICONS.close;
+        closeBtn.addEventListener('click', closeListManagementModal);
+
+        header.appendChild(title);
+        header.appendChild(closeBtn);
+
+        const content = document.createElement('div');
+        content.className = 'list-management-content';
+
+        renderListManagementContent(content);
+
+        modal.appendChild(header);
+        modal.appendChild(content);
+        overlay.appendChild(modal);
+
+        document.body.appendChild(overlay);
+
+        const escapeHandler = (e) => {
+            if (e.key === 'Escape') closeListManagementModal();
+        };
+        document.addEventListener('keydown', escapeHandler);
+        overlay.escapeHandler = escapeHandler;
+    }
+
+    function renderListManagementContent(content) {
+        content.innerHTML = '';
+
+        const lists = Storage.getLists();
+        const bookmarks = Storage.getBookmarks();
+
+        lists.forEach(listName => {
+            const item = document.createElement('div');
+            item.className = 'list-management-item';
+
+            const name = document.createElement('div');
+            name.className = 'list-management-item-name';
+            name.textContent = listName;
+
+            const count = document.createElement('div');
+            count.className = 'list-management-item-count';
+            const itemCount = bookmarks[listName]?.length || 0;
+            count.textContent = `${itemCount} item${itemCount !== 1 ? 's' : ''}`;
+
+            const actions = document.createElement('div');
+            actions.className = 'list-management-item-actions';
+
+            const renameBtn = document.createElement('button');
+            renameBtn.className = 'list-management-action-btn';
+            renameBtn.innerHTML = ICONS.pencil;
+            renameBtn.title = 'Rename list';
+            renameBtn.disabled = listName === DEFAULT_LIST;
+            renameBtn.addEventListener('click', () => {
+                const newName = prompt(`Rename list "${listName}" to:`, listName);
+                if (newName && newName.trim() && newName.trim() !== listName) {
+                    if (Storage.renameList(listName, newName.trim())) {
+                        renderListManagementContent(content);
+                        Storage.dispatchUpdate();
+                    }
+                }
+            });
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'list-management-action-btn danger';
+            deleteBtn.innerHTML = ICONS.trash;
+            deleteBtn.title = 'Delete list';
+            deleteBtn.disabled = listName === DEFAULT_LIST;
+            deleteBtn.addEventListener('click', () => {
+                const itemCount = bookmarks[listName]?.length || 0;
+                const message = itemCount > 0
+                    ? `Delete list "${listName}" and remove ${itemCount} bookmark${itemCount !== 1 ? 's' : ''}?`
+                    : `Delete list "${listName}"?`;
+
+                if (confirm(message)) {
+                    if (Storage.deleteList(listName)) {
+                        renderListManagementContent(content);
+                        Storage.dispatchUpdate();
+                    }
+                }
+            });
+
+            actions.appendChild(renameBtn);
+            actions.appendChild(deleteBtn);
+
+            item.appendChild(name);
+            item.appendChild(count);
+            item.appendChild(actions);
+
+            content.appendChild(item);
+        });
+    }
+
+    function closeListManagementModal() {
+        const overlays = document.querySelectorAll('.bookmarks-modal-overlay');
+        overlays.forEach(overlay => {
+            if (overlay.querySelector('.list-management-modal')) {
+                if (overlay.escapeHandler) {
+                    document.removeEventListener('keydown', overlay.escapeHandler);
+                }
+                overlay.remove();
+            }
+        });
+    }
+
+    // ============================================================================
     // BOOKMARKS VIEWER MODAL
     // ============================================================================
 
-    function renderBookmarksModal(contentEl, filterEl, statsEl, activeFilter = 'All') {
+    function renderBookmarksModal(contentEl, filterEl, actionsEl, statsEl, activeFilter = 'All') {
         const bookmarks = Storage.getBookmarks();
         const lists = ['All', ...Storage.getLists()];
 
@@ -1261,7 +1573,7 @@
             btn.dataset.listName = listName;
 
             btn.addEventListener('click', () => {
-                renderBookmarksModal(contentEl, filterEl, statsEl, listName);
+                renderBookmarksModal(contentEl, filterEl, actionsEl, statsEl, listName);
             });
 
             if (listName !== 'All') {
@@ -1303,7 +1615,7 @@
                         newOrder.splice(dropIndex, 0, removed);
 
                         Storage.saveListOrder(newOrder);
-                        renderBookmarksModal(contentEl, filterEl, statsEl, activeFilter);
+                        renderBookmarksModal(contentEl, filterEl, actionsEl, statsEl, activeFilter);
                     }
                 });
             }
@@ -1311,10 +1623,20 @@
             filterEl.appendChild(btn);
         });
 
+        // Render actions section with manage button and hint
+        actionsEl.innerHTML = '';
+
+        const manageBtn = document.createElement('button');
+        manageBtn.className = 'bookmarks-manage-btn';
+        manageBtn.innerHTML = `${ICONS.gear}<span>Manage</span>`;
+        manageBtn.addEventListener('click', openListManagementModal);
+
         const hint = document.createElement('div');
         hint.className = 'bookmarks-filter-hint';
-        hint.textContent = 'Tip: Drag and drop lists to reorder them.';
-        filterEl.appendChild(hint);
+        hint.textContent = 'Tip: Drag-and-drop list names to organize.';
+
+        actionsEl.appendChild(manageBtn);
+        actionsEl.appendChild(hint);
 
         let displayBookmarks = [];
         if (activeFilter === 'All') {
@@ -1401,7 +1723,7 @@
 
                     if (confirm(`Remove "${repo}" from all lists?`)) {
                         currentLists.forEach(list => Storage.removeBookmark(repo, list));
-                        renderBookmarksModal(contentEl, filterEl, statsEl, activeFilter);
+                        renderBookmarksModal(contentEl, filterEl, actionsEl, statsEl, activeFilter);
                     }
                 });
 
@@ -1522,7 +1844,7 @@
 
         const title = document.createElement('h2');
         title.className = 'bookmarks-modal-title';
-        title.innerHTML = `${ICONS.bookmarkHollow}<span>Your Bookmarks</span>`;
+        title.innerHTML = `<span>Your Bookmarks</span>`;
 
         const closeBtn = document.createElement('button');
         closeBtn.className = 'bookmarks-modal-close';
@@ -1534,6 +1856,9 @@
 
         const filterContainer = document.createElement('div');
         filterContainer.className = 'bookmarks-filter';
+
+        const actionsContainer = document.createElement('div');
+        actionsContainer.className = 'bookmarks-filter-actions';
 
         const content = document.createElement('div');
         content.className = 'bookmarks-modal-content';
@@ -1585,7 +1910,7 @@
             const result = await Storage.syncFromGist();
             if (result.success) {
                 alert('Restore successful!');
-                renderBookmarksModal(content, filterContainer, stats);
+                renderBookmarksModal(content, filterContainer, actionsContainer, stats);
             } else if (result.error) {
                 alert('Restore failed: ' + result.error);
             }
@@ -1621,11 +1946,12 @@
 
         modal.appendChild(header);
         modal.appendChild(filterContainer);
+        modal.appendChild(actionsContainer);
         modal.appendChild(content);
         modal.appendChild(stats);
         overlay.appendChild(modal);
 
-        renderBookmarksModal(content, filterContainer, stats);
+        renderBookmarksModal(content, filterContainer, actionsContainer, stats);
 
         document.body.appendChild(overlay);
         modalOpen = true;
@@ -1735,10 +2061,11 @@
             if (modal) {
                 const content = modal.querySelector('.bookmarks-modal-content');
                 const filter = modal.querySelector('.bookmarks-filter');
+                const actions = modal.querySelector('.bookmarks-filter-actions');
                 const stats = modal.querySelector('.bookmarks-stats');
-                if (content && filter && stats) {
+                if (content && filter && actions && stats) {
                     const activeFilter = filter.querySelector('.bookmarks-filter-btn.active');
-                    renderBookmarksModal(content, filter, stats, activeFilter?.textContent || 'All');
+                    renderBookmarksModal(content, filter, actions, stats, activeFilter?.textContent || 'All');
                 }
             }
         }
