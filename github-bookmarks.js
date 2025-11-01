@@ -37,7 +37,8 @@
         trash: `<svg class="octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M11 1.75V3h2.25a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1 0-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75ZM4.496 6.675l.66 6.6a.25.25 0 0 0 .249.225h5.19a.25.25 0 0 0 .249-.225l.66-6.6a.75.75 0 0 1 1.492.149l-.66 6.6A1.748 1.748 0 0 1 10.595 15h-5.19a1.75 1.75 0 0 1-1.741-1.575l-.66-6.6a.75.75 0 1 1 1.492-.15ZM6.5 1.75V3h3V1.75a.25.25 0 0 0-.25-.25h-2.5a.25.25 0 0 0-.25.25Z"></path></svg>`,
         questionMark: `<svg class="octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.756 2.756 0 0 1 1.638.525c.503.377.862.965.862 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6.24 6.24 0 0 0-.26.16.952.952 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661.103-.067.207-.132.313-.195l.007-.004c.1-.061.182-.11.258-.161a.969.969 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25c0-.412-.155-.826-.57-1.12A1.256 1.256 0 0 0 8 4.75c-.361 0-.67.1-.894.27-.228.173-.4.412-.534.714v.001ZM8 11a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>`,
         pencil: `<svg class="octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M11.013 1.427a1.75 1.75 0 0 1 2.474 0l1.086 1.086a1.75 1.75 0 0 1 0 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 0 1-.927-.928l.929-3.25c.081-.286.235-.547.445-.758l8.61-8.61Zm.176 4.823L9.75 4.81l-6.286 6.287a.253.253 0 0 0-.064.108l-.558 1.953 1.953-.558a.253.253 0 0 0 .108-.064Zm1.238-3.763a.25.25 0 0 0-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 0 0 0-.354Z"></path></svg>`,
-        gear: `<svg class="octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M8 0a8.2 8.2 0 0 1 .701.031C9.444.095 9.99.645 10.16 1.29l.288 1.107c.018.066.079.158.212.224.231.114.454.243.668.386.123.082.233.09.299.071l1.103-.303c.644-.176 1.392.021 1.82.63.27.385.506.792.704 1.218.315.675.111 1.422-.364 1.891l-.814.806c-.049.048-.098.147-.088.294.016.257.016.515 0 .772-.01.147.038.246.088.294l.814.806c.475.469.679 1.216.364 1.891a7.977 7.977 0 0 1-.704 1.217c-.428.61-1.176.807-1.82.63l-1.102-.302c-.067-.019-.177-.011-.3.071a5.909 5.909 0 0 1-.668.386c-.133.066-.194.158-.211.224l-.29 1.106c-.168.646-.715 1.196-1.458 1.26a8.006 8.006 0 0 1-1.402 0c-.743-.064-1.289-.614-1.458-1.26l-.289-1.106c-.018-.066-.079-.158-.212-.224a5.738 5.738 0 0 1-.668-.386c-.123-.082-.233-.09-.299-.071l-1.103.303c-.644.176-1.392-.021-1.82-.63a8.12 8.12 0 0 1-.704-1.218c-.315-.675-.111-1.422.363-1.891l.815-.806c.05-.048.098-.147.088-.294a6.214 6.214 0 0 1 0-.772c.01-.147-.038-.246-.088-.294l-.815-.806C.635 6.045.431 5.298.746 4.623a7.92 7.92 0 0 1 .704-1.217c.428-.61 1.176-.807 1.82-.63l1.102.302c.067.019.177.011.3-.071.214-.143.437-.272.668-.386.133-.066.194-.158.211-.224l.29-1.106C6.009.645 6.556.095 7.299.03 7.53.01 7.764 0 8 0Zm-.571 1.525c-.036.003-.108.036-.137.146l-.289 1.105c-.147.561-.549.967-.998 1.189-.173.086-.34.183-.5.29-.417.278-.97.423-1.529.27l-1.103-.303c-.109-.03-.175.016-.195.045-.22.312-.412.644-.573.99-.014.031-.021.11.059.19l.815.806c.411.406.562.957.53 1.456a4.709 4.709 0 0 0 0 .582c.032.499-.119 1.05-.53 1.456l-.815.806c-.081.08-.073.159-.059.19.162.346.353.677.573.989.02.03.085.076.195.046l1.102-.303c.56-.153 1.113-.008 1.53.27.161.107.328.204.501.29.447.222.85.629.997 1.189l.289 1.105c.029.109.101.143.137.146a6.6 6.6 0 0 0 1.142 0c.036-.003.108-.036.137-.146l.289-1.105c.147-.561.549-.967.998-1.189.173-.086.34-.183.5-.29.417-.278.97-.423 1.529-.27l1.103.303c.109.029.175-.016.195-.045.22-.313.411-.644.573-.99.014-.031.021-.11-.059-.19l-.815-.806c-.411-.406-.562-.957-.53-1.456a4.709 4.709 0 0 0 0-.582c-.032-.499.119-1.05.53-1.456l.815-.806c.081-.08.073-.159.059-.19a6.464 6.464 0 0 0-.573-.989c-.02-.03-.085-.076-.195-.046l-1.102.303c-.56.153-1.113.008-1.53-.27a4.44 4.44 0 0 0-.501-.29c-.447-.222-.85-.629-.997-1.189l-.289-1.105c-.029-.11-.101-.143-.137-.146a6.6 6.6 0 0 0-1.142 0ZM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM9.5 8a1.5 1.5 0 1 0-3.001.001A1.5 1.5 0 0 0 9.5 8Z"></path></svg>`
+        gear: `<svg class="octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M8 0a8.2 8.2 0 0 1 .701.031C9.444.095 9.99.645 10.16 1.29l.288 1.107c.018.066.079.158.212.224.231.114.454.243.668.386.123.082.233.09.299.071l1.103-.303c.644-.176 1.392.021 1.82.63.27.385.506.792.704 1.218.315.675.111 1.422-.364 1.891l-.814.806c-.049.048-.098.147-.088.294.016.257.016.515 0 .772-.01.147.038.246.088.294l.814.806c.475.469.679 1.216.364 1.891a7.977 7.977 0 0 1-.704 1.217c-.428.61-1.176.807-1.82.63l-1.102-.302c-.067-.019-.177-.011-.3.071a5.909 5.909 0 0 1-.668.386c-.133.066-.194.158-.211.224l-.29 1.106c-.168.646-.715 1.196-1.458 1.26a8.006 8.006 0 0 1-1.402 0c-.743-.064-1.289-.614-1.458-1.26l-.289-1.106c-.018-.066-.079-.158-.212-.224a5.738 5.738 0 0 1-.668-.386c-.123-.082-.233-.09-.299-.071l-1.103.303c-.644.176-1.392-.021-1.82-.63a8.12 8.12 0 0 1-.704-1.218c-.315-.675-.111-1.422.363-1.891l.815-.806c.05-.048.098-.147.088-.294a6.214 6.214 0 0 1 0-.772c.01-.147-.038-.246-.088-.294l-.815-.806C.635 6.045.431 5.298.746 4.623a7.92 7.92 0 0 1 .704-1.217c.428-.61 1.176-.807 1.82-.63l1.102.302c.067.019.177.011.3-.071.214-.143.437-.272.668-.386.133-.066.194-.158.211-.224l.29-1.106C6.009.645 6.556.095 7.299.03 7.53.01 7.764 0 8 0Zm-.571 1.525c-.036.003-.108.036-.137.146l-.289 1.105c-.147.561-.549.967-.998 1.189-.173.086-.34.183-.5.29-.417.278-.97.423-1.529.27l-1.103-.303c-.109-.03-.175.016-.195.045-.22.312-.412.644-.573.99-.014.031-.021.11.059.19l.815.806c.411.406.562.957.53 1.456a4.709 4.709 0 0 0 0 .582c.032.499-.119 1.05-.53 1.456l-.815.806c-.081.08-.073.159-.059.19.162.346.353.677.573.989.02.03.085.076.195.046l1.102-.303c.56-.153 1.113-.008 1.53.27.161.107.328.204.501.29.447.222.85.629.997 1.189l.289 1.105c.029.109.101.143.137.146a6.6 6.6 0 0 0 1.142 0c.036-.003.108-.036.137-.146l.289-1.105c.147-.561.549-.967.998-1.189.173-.086.34-.183.5-.29.417-.278.97-.423 1.529-.27l1.103.303c.109.029.175-.016.195-.045.22-.313.411-.644.573-.99.014-.031.021-.11-.059-.19l-.815-.806c-.411-.406-.562-.957-.53-1.456a4.709 4.709 0 0 0 0-.582c-.032-.499.119-1.05.53-1.456l.815-.806c.081-.08.073-.159.059-.19a6.464 6.464 0 0 0-.573-.989c-.02-.03-.085-.076-.195-.046l-1.102.303c-.56.153-1.113.008-1.53-.27a4.44 4.44 0 0 0-.501-.29c-.447-.222-.85-.629-.997-1.189l-.289-1.105c-.029-.11-.101-.143-.137-.146a6.6 6.6 0 0 0-1.142 0ZM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM9.5 8a1.5 1.5 0 1 0-3.001.001A1.5 1.5 0 0 0 9.5 8Z"></path></svg>`,
+        gripVertical: `<svg class="octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" aria-hidden="true"><path d="M10 13a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm0-4a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm-4 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm5-9a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM6 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>`
     };
 
     let modalOpen = false;
@@ -230,7 +231,7 @@
             const token = this.getSyncToken();
             if (!token) {
                 if (!silent) alert('Please configure your GitHub token first (click "Configure Sync")');
-                return false;
+                return { success: false, error: 'No token configured' };
             }
 
             const data = {
@@ -251,8 +252,9 @@
                 const response = await fetch(url, {
                     method,
                     headers: {
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json',
+                        'Authorization': `Bearer ${token}`,
+                        'Accept': 'application/vnd.github+json',
+                        'X-GitHub-Api-Version': '2022-11-28',
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
@@ -268,7 +270,7 @@
 
                 if (!response.ok) {
                     const error = await response.json();
-                    throw new Error(error.message || 'Failed to sync');
+                    throw new Error(error.message || `HTTP ${response.status}: ${response.statusText}`);
                 }
 
                 const result = await response.json();
@@ -277,7 +279,7 @@
             } catch (error) {
                 console.error('Sync failed:', error);
                 if (!silent) {
-                    console.error('Auto-sync error:', error.message);
+                    alert(`Sync failed: ${error.message}\n\nMake sure your token has the 'gist' scope enabled.`);
                 }
                 return { success: false, error: error.message };
             }
@@ -289,19 +291,20 @@
 
             if (!token || !gistId) {
                 alert('No sync configuration found. Please backup first to create a sync gist.');
-                return false;
+                return { success: false, error: 'No configuration' };
             }
 
             try {
                 const response = await fetch(`https://api.github.com/gists/${gistId}`, {
                     headers: {
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json'
+                        'Authorization': `Bearer ${token}`,
+                        'Accept': 'application/vnd.github+json',
+                        'X-GitHub-Api-Version': '2022-11-28'
                     }
                 });
 
                 if (!response.ok) {
-                    throw new Error('Failed to fetch gist');
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
                 }
 
                 const gist = await response.json();
@@ -322,6 +325,7 @@
                 return { success: false };
             } catch (error) {
                 console.error('Restore failed:', error);
+                alert(`Restore failed: ${error.message}`);
                 return { success: false, error: error.message };
             }
         }
@@ -574,11 +578,86 @@
             }
 
             .gh-bookmarks-item .Counter {
-                margin-left: 0 !important;
+                margin-left: 3px !important;
             }
 
             .gh-bookmarks-item > span {
                 display: inline !important;
+            }
+
+            .gh-bookmarks-item[aria-current] {
+                font-weight: normal !important;
+            }
+
+            .gh-bookmarks-item .UnderlineNav-indicator {
+                display: none !important;
+            }
+
+            /* Ensure bookmarks tab never shows underline but maintains normal styling */
+            .gh-bookmarks-tab-item {
+                position: relative !important;
+                color: var(--fgColor-default, var(--color-fg-default)) !important;
+                border-radius: 6px !important;
+                padding-top: 5px !important;
+                padding-bottom: 5px !important;
+                padding-left: 8px !important;
+                padding-right: 8px !important;
+                margin: 0 !important;
+                margin-left: 2px !important;
+                margin-right: 2px !important;
+
+            }
+
+            .gh-bookmarks-tab-item:hover {
+                background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)) !important;
+                color: var(--fgColor-default, var(--color-fg-default)) !important;
+                border-radius: 6px !important;
+            }
+
+            .gh-bookmarks-tab-item svg {
+                color: var(--fgColor-muted); !important;
+                fill: currentColor !important;
+            }
+
+            .gh-bookmarks-tab-item::after {
+                background: none !important;
+                display: none !important;
+            }
+
+            .gh-bookmarks-tab-item[aria-current]::after {
+                background: none !important;
+                display: none !important;
+            }
+
+            .gh-bookmarks-tab-item.selected::after {
+                background: none !important;
+                display: none !important;
+            }
+
+            .gh-bookmarks-tab-item[role="tab"][aria-selected="true"]::after {
+                background: none !important;
+                display: none !important;
+            }
+
+            .gh-bookmarks-tab-item[aria-current]:not([aria-current="false"])::after {
+                background: none !important;
+                display: none !important;
+            }
+
+            .gh-bookmarks-tab-item .UnderlineNav-indicator {
+                display: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+            }
+
+            /* Force override any UnderlineNav styles on bookmarks */
+            .UnderlineNav-item.gh-bookmarks-tab-item::after,
+            .UnderlineNav-item.gh-bookmarks-tab-item.selected::after,
+            .UnderlineNav-item.gh-bookmarks-tab-item[role="tab"][aria-selected="true"]::after,
+            .UnderlineNav-item.gh-bookmarks-tab-item[aria-current]:not([aria-current="false"])::after {
+                background: none !important;
+                display: none !important;
+                content: none !important;
             }
 
             /* Modal Overlay */
@@ -664,8 +743,10 @@
             .bookmarks-filter {
                 display: flex;
                 gap: 8px;
-                padding: 16px 24px 6px 24px;
+                padding: 16px 24px 0 24px;
+                overflow-x: auto;
                 flex-wrap: wrap;
+                border-bottom: 1px solid var(--borderColor-muted, var,--color-border-muted);
             }
 
             .bookmarks-filter-actions {
@@ -1479,9 +1560,24 @@
         const lists = Storage.getLists();
         const bookmarks = Storage.getBookmarks();
 
-        lists.forEach(listName => {
+        let draggedElement = null;
+        let draggedIndex = -1;
+
+        lists.forEach((listName, index) => {
             const item = document.createElement('div');
             item.className = 'list-management-item';
+            item.draggable = listName !== DEFAULT_LIST;
+            item.dataset.listName = listName;
+            item.dataset.index = index;
+
+            // Drag handle
+            const dragHandle = document.createElement('div');
+            dragHandle.className = 'list-management-item-drag-handle';
+            dragHandle.innerHTML = ICONS.gripVertical;
+            if (listName === DEFAULT_LIST) {
+                dragHandle.style.opacity = '0.3';
+                dragHandle.style.cursor = 'not-allowed';
+            }
 
             const name = document.createElement('div');
             name.className = 'list-management-item-name';
@@ -1532,9 +1628,64 @@
             actions.appendChild(renameBtn);
             actions.appendChild(deleteBtn);
 
+            item.appendChild(dragHandle);
             item.appendChild(name);
             item.appendChild(count);
             item.appendChild(actions);
+
+            // Drag and drop handlers
+            if (listName !== DEFAULT_LIST) {
+                item.addEventListener('dragstart', (e) => {
+                    draggedElement = item;
+                    draggedIndex = index;
+                    item.classList.add('dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                });
+
+                item.addEventListener('dragend', () => {
+                    item.classList.remove('dragging');
+                });
+            }
+
+            item.addEventListener('dragover', (e) => {
+                if (draggedElement && draggedElement !== item) {
+                    e.preventDefault();
+                    const rect = item.getBoundingClientRect();
+                    const midpoint = rect.top + rect.height / 2;
+
+                    if (e.clientY < midpoint) {
+                        item.style.borderTop = '2px solid var(--button-primary-bgColor-rest, var(--color-btn-primary-bg))';
+                        item.style.borderBottom = '';
+                    } else {
+                        item.style.borderBottom = '2px solid var(--button-primary-bgColor-rest, var(--color-btn-primary-bg))';
+                        item.style.borderTop = '';
+                    }
+                }
+            });
+
+            item.addEventListener('dragleave', () => {
+                item.style.borderTop = '';
+                item.style.borderBottom = '';
+            });
+
+            item.addEventListener('drop', (e) => {
+                e.preventDefault();
+                item.style.borderTop = '';
+                item.style.borderBottom = '';
+
+                if (draggedElement && draggedElement !== item) {
+                    const dropIndex = parseInt(item.dataset.index);
+                    const allLists = Storage.getLists();
+
+                    const newOrder = [...allLists];
+                    const [removed] = newOrder.splice(draggedIndex, 1);
+                    newOrder.splice(dropIndex, 0, removed);
+
+                    Storage.saveListOrder(newOrder);
+                    renderListManagementContent(content);
+                    Storage.dispatchUpdate();
+                }
+            });
 
             content.appendChild(item);
         });
@@ -1562,63 +1713,15 @@
 
         filterEl.innerHTML = '';
 
-        let draggedElement = null;
-        let draggedIndex = -1;
-
-        lists.forEach((listName, index) => {
+        lists.forEach((listName) => {
             const btn = document.createElement('button');
             btn.className = 'bookmarks-filter-btn' + (listName === activeFilter ? ' active' : '');
             btn.textContent = listName;
-            btn.draggable = listName !== 'All';
             btn.dataset.listName = listName;
 
             btn.addEventListener('click', () => {
                 renderBookmarksModal(contentEl, filterEl, actionsEl, statsEl, listName);
             });
-
-            if (listName !== 'All') {
-                btn.addEventListener('dragstart', (e) => {
-                    draggedElement = btn;
-                    draggedIndex = index - 1;
-                    btn.classList.add('dragging');
-                    e.dataTransfer.effectAllowed = 'move';
-                });
-
-                btn.addEventListener('dragend', () => {
-                    btn.classList.remove('dragging');
-                    filterEl.querySelectorAll('.bookmarks-filter-btn').forEach(b => {
-                        b.classList.remove('drag-over');
-                    });
-                });
-
-                btn.addEventListener('dragover', (e) => {
-                    e.preventDefault();
-                    if (draggedElement && draggedElement !== btn) {
-                        btn.classList.add('drag-over');
-                    }
-                });
-
-                btn.addEventListener('dragleave', () => {
-                    btn.classList.remove('drag-over');
-                });
-
-                btn.addEventListener('drop', (e) => {
-                    e.preventDefault();
-                    btn.classList.remove('drag-over');
-
-                    if (draggedElement && draggedElement !== btn) {
-                        const allLists = Storage.getLists();
-                        const dropIndex = Array.from(filterEl.children).indexOf(btn) - 1;
-
-                        const newOrder = [...allLists];
-                        const [removed] = newOrder.splice(draggedIndex, 1);
-                        newOrder.splice(dropIndex, 0, removed);
-
-                        Storage.saveListOrder(newOrder);
-                        renderBookmarksModal(contentEl, filterEl, actionsEl, statsEl, activeFilter);
-                    }
-                });
-            }
 
             filterEl.appendChild(btn);
         });
@@ -1633,7 +1736,7 @@
 
         const hint = document.createElement('div');
         hint.className = 'bookmarks-filter-hint';
-        hint.textContent = 'Tip: Drag-and-drop list names to organize.';
+        hint.textContent = 'Use the Manage button to reorder, rename, or delete lists';
 
         actionsEl.appendChild(manageBtn);
         actionsEl.appendChild(hint);
@@ -1844,7 +1947,7 @@
 
         const title = document.createElement('h2');
         title.className = 'bookmarks-modal-title';
-        title.innerHTML = `<span>Your Bookmarks</span>`;
+        title.innerHTML = `${ICONS.bookmarkHollow}<span>Your Bookmarks</span>`;
 
         const closeBtn = document.createElement('button');
         closeBtn.className = 'bookmarks-modal-close';
@@ -2002,16 +2105,38 @@
         if (!starsLink) return;
 
         const parentList = starsLink.closest('ul, [role="menu"]');
-        if (!parentList || parentList.querySelector('.gh-bookmarks-item')) return;
+        if (!parentList || parentList.querySelector('.gh-bookmarks-tab-item')) return;
 
         const starsParent = starsLink.parentElement;
         const bookmarksParent = starsParent.cloneNode(true);
         const bookmarksLink = bookmarksParent.querySelector('a');
 
+        // Remove all classes that might trigger underline behavior
+        const classesToRemove = Array.from(bookmarksLink.classList).filter(cls =>
+            cls.includes('UnderlineNav') || cls.includes('selected') || cls.includes('active')
+        );
+        classesToRemove.forEach(cls => bookmarksLink.classList.remove(cls));
+
+        // Add unique bookmarks class
         bookmarksLink.classList.add('gh-bookmarks-item');
+        bookmarksLink.classList.add('gh-bookmarks-tab-item');
         bookmarksLink.removeAttribute('href');
         bookmarksLink.removeAttribute('data-turbo-frame');
+        bookmarksLink.removeAttribute('aria-current');
+        bookmarksLink.removeAttribute('aria-selected');
         bookmarksLink.style.cursor = 'pointer';
+
+        // Remove any underline indicator element
+        const indicator = bookmarksParent.querySelector('.UnderlineNav-indicator');
+        if (indicator) {
+            indicator.remove();
+        }
+
+        // Remove indicator from link itself too
+        const linkIndicator = bookmarksLink.querySelector('.UnderlineNav-indicator');
+        if (linkIndicator) {
+            linkIndicator.remove();
+        }
 
         const iconContainer = bookmarksLink.querySelector('svg')?.parentElement;
         if (iconContainer?.querySelector('svg')) {
@@ -2045,6 +2170,10 @@
             const dropdown = document.querySelector('details[open]');
             if (dropdown) dropdown.removeAttribute('open');
         });
+
+        // Ensure proper spacing matches other tabs
+        bookmarksLink.style.paddingLeft = '16px';
+        bookmarksLink.style.paddingRight = '16px';
 
         starsParent.parentNode.insertBefore(bookmarksParent, starsParent);
     }
